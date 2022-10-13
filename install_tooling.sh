@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DEVSPACE_VERSION="latest"
+DEVSPACE_VERSION="v6.1.1"
 
 apk add --no-cache curl vim wget bash iputils bind-tools git nodejs-lts npm openssl || (apt-get update && apt-get -y install curl vim wget bash inetutils-ping dnsutils git openssl && curl -sL https://deb.nodesource.com/setup_lts.x -o nodesource_setup.sh && bash nodesource_setup.sh && apt-get install nodejs)
 
@@ -22,14 +22,14 @@ chmod +x get_helm.sh
 ./get_helm.sh
 rm get_helm.sh
 
-curl -s -L "https://github.com/loft-sh/devspace/releases/$DEVSPACE_VERSION" | sed -nE 's!.*"([^"]*devspace-linux-'$ARCH_SHORT')".*!https://github.com\1!p' | xargs -n 1 curl -L -o devspace
+curl -s -L "https://github.com/loft-sh/devspace/releases/download/$DEVSPACE_VERSION/devspace-linux-$ARCH_SHORT" -o devspace
 chmod +x devspace
 install -p devspace /usr/local/bin;
 rm devspace
 
 devspace add plugin https://github.com/loft-sh/loft-devspace-plugin
 
-curl -s -L "https://github.com/loft-sh/loft/releases/latest" | sed -nE 's!.*"([^"]*loft-linux-'$ARCH_SHORT')".*!https://github.com\1!p' | xargs -n 1 curl -L -o loft
+curl -s -L "https://github.com/loft-sh/devspace/releases/download/v2.3.1-beta.0/loft-linux-$ARCH_SHORT" -o loft
 chmod +x loft
 install -p loft /usr/local/bin;
 rm loft
