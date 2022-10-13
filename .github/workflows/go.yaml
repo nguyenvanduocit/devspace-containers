@@ -12,7 +12,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_REPO: loft-sh/devspace-containers/go
+  IMAGE_REPO: nguyenvanduocit/devspace-containers/go
 
 defaults:
   run:
